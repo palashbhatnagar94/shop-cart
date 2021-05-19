@@ -1,0 +1,24 @@
+<div class="products-container row">
+    <ul class="col-md-3 categories">
+        <li *ngFor="let cat of categories; let i=index" href="#" (click)="onChangeCategory(i)">
+            {{ cat.name }}
+        </li>
+    </ul>
+    
+    <div *ngIf="products" class="col-md-9 products">
+        <div class="row">
+        <div *ngFor="let product of products; let i=index" class="card-container"
+        [ngClass]="{'hide' : selectedCategoryId !== '' && selectedCategoryId !== product.category}">
+            <strong>{{ product.name }}</strong>
+            <div class="row">
+                <img [src]="product.imageURL" alt="product.description" class="col-md-6"/>
+                <p class="col-md-5 item-desc">{{ product.description | wordWrap }}</p>
+            </div>
+            <div class="price-button">
+                <label> MRP Rs. {{ product.price }} </label>
+                <button type="button" (click)="addToCart(product)">Buy Now</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

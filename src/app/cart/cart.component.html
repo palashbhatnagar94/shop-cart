@@ -1,0 +1,35 @@
+<div class="cart-container">
+    <div class="card-content">
+        <div class="cart-title">
+            <h3><label>My Cart</label>                 
+            <i class="close" (click)="close()">X</i>
+            </h3>
+        </div>
+        <hr>
+        <div class="empty-cart" *ngIf="cartData.length === 0">
+            <strong>No items in your cart.</strong>
+            <p>Your favourite items are just a click away</p>
+        </div>
+
+        <div *ngIf="cartData">
+            <div *ngFor="let product of cartData; let i=index" class="item-tile">
+                <img [src]="product.imageURL" alt="product.description" />
+                <div class="item-desc">
+                    <strong>{{ product.name }}</strong> <br />
+                    <button type="button" (click)="addItem(product)">+</button>
+                    <input type="text" [value]="product.quantity" />
+                    <button type="button" (click)="removeItem(product)"> - </button> X Rs.{{ product.price }}
+
+                </div>
+                <div class="item-price">
+                    <label> Rs. {{ product.price * (product.quantity ? product.quantity : 0) }} </label>
+                </div>
+            </div>
+            <hr>
+            <footer>
+                <span>Amount Payable: <strong>{{ amountPayable }}</strong></span>
+                <button type="button" class="checkout-btn" [disabled]="cartData.length === 0" (click)="checkout()">Checkout</button> 
+            </footer>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<header class="header-container">
+    <img src="/static/images/logo.png" alt="logo image" class="logo" />
+    <a routerLink="/home">Home</a>
+    <a routerLink="/products">Products</a>
+    <div class="cart-login">
+        <div *ngIf="!userLoggedIn">
+            <a routerLink="/login">SignIn</a>
+            <a routerLink="/register">Register</a>
+        </div>
+        <div *ngIf="userLoggedIn">
+            <a href="#" (click)="logout()">Log Out</a>
+        </div>       
+        <img src="/static/images/cart.svg" alt="cart image" class="cart" (click)="showCart()"/> {{ totalItem }} Item selected       
+    </div>
+</header>

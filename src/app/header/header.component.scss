@@ -1,0 +1,26 @@
+.header-container {
+    height: 6rem;
+    margin: 1rem auto;
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.logo {
+    height: 5rem;
+    width: auto;
+}
+
+.cart {
+    height: 2rem;
+    width: auto;
+    margin: 1rem;
+}
+
+a {
+    margin: 1.5rem;
+}
+
+.cart-login {
+    position: absolute;
+    right: 1rem;
+}

@@ -1,0 +1,17 @@
+<ngb-carousel *ngIf="banners" [showNavigationArrows]="true" [showNavigationIndicators]=true>
+    <ng-template ngbSlide *ngFor="let banner of banners">
+      <div class="picsum-img-wrapper">
+        <img [src]="banner.bannerImageUrl" [alt]="banner.bannerImageAlt">
+      </div>
+    </ng-template>
+</ngb-carousel>
+<div *ngIf="categories" class="categories-container">
+    <div *ngFor="let category of categories; let i=index" class="category-detail">
+        <div class="col-md-8 category-name" [ngStyle]="{'float': i%2 === 0 ? 'right' : 'left' }">
+            <strong>{{ category.name}}</strong>
+            <p>{{ category.description }}</p>
+            <button type="button" class="explore">Explore {{ category.key }}</button>
+        </div>
+        <img class="col-md-4" [src]="category.imageUrl" [alt]="category.description" [ngStyle]="{'float': i%2 === 1 ? 'right' : 'left' }"/>
+    </div>
+</div>
