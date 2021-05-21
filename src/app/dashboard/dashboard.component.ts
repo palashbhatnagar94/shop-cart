@@ -16,6 +16,8 @@ export class DashboardComponent implements OnInit {
 
   selectedCategoryId: string = '';
 
+  selectedCat: string = '';
+
   cartData:Product[] = []
 
   constructor(public ps: ProductService, public cartService: CartService) { }
@@ -42,7 +44,7 @@ export class DashboardComponent implements OnInit {
 
   onChangeCategory(i: number) {
     console.log('category', this.categories[i]);
+    // this.selectedCat = this.categories[i].name;
     this.selectedCategoryId = this.categories[i]?.id;
   }
-
 }

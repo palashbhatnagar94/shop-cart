@@ -1,9 +1,21 @@
 <div class="products-container row">
-    <ul class="col-md-3 categories">
-        <li *ngFor="let cat of categories; let i=index" href="#" (click)="onChangeCategory(i)">
+
+    <div class="col-sm-12 d-md-none">
+        <select class="form-control btn-danger" [(ngModel)]="selectedCat" (ngModelChange)="onChangeCategory($event)">
+            <option *ngFor="let cat of categories; let i=index" [value]="i">
+                {{ cat.name }}
+                <hr>
+            </option>
+          </select>
+    </div>
+    <ul class="d-none d-sm-none d-md-block col-md-3 categories">
+        <li *ngFor="let cat of categories; let i=index" [ngClass]="{'active': categories[i].id === selectedCategoryId}" (click)="onChangeCategory(i)">
             {{ cat.name }}
+            <hr>
         </li>
     </ul>
+
+
     
     <div *ngIf="products" class="col-md-9 products">
         <div class="row">
@@ -16,7 +28,7 @@
             </div>
             <div class="price-button">
                 <label> MRP Rs. {{ product.price }} </label>
-                <button type="button" (click)="addToCart(product)">Buy Now</button>
+                <button type="button" class="btn btn-danger" (click)="addToCart(product)">Buy Now</button>
             </div>
         </div>
         </div>
