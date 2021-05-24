@@ -7,10 +7,6 @@
     }
 }
 
-// select.form-control {
-//     color: white;
-// }
-
 .categories {
     list-style: none;
     display: inline-block;    
@@ -44,22 +40,60 @@
         height: 7rem;
         width: auto;
     }
+
+    @media (min-width:540px) and (max-width: 767px) {
+        
+        height: 20rem;
+        width: 100%;
+        margin: 4px;
+        padding: 4px;
+
+        img {
+            height: 12rem;
+            width: auto;
+        }
+    }
+    @media (max-width: 540px) {
+        
+        height: 15rem;
+        width: 100%;
+        margin: 4px;
+        padding: 4px;
+    
+        img {
+            height: 8rem;
+            width: auto;
+        }
+    }
 }
 
+.prod-name {
+    margin-bottom: 1rem;
+}
+
+.cat-sm {
+    width: 90%;
+}
 .item-desc {
     font-size: 10px;
     margin: 2px 0 2px 0;
-    background-color:  rgb(214, 211, 211);;
+    background-color:  rgb(214, 211, 211);
+    width: 50%;
 }
 
 .price-button {
     text-align: center;
 
     button {
+        width: 94%;
         margin: 0.5rem;
     }
 }
 
 .hide {
     display: none;
+}
+
+.show {
+    display: block;
 }

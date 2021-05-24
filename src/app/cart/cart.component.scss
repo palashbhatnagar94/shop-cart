@@ -13,10 +13,17 @@
 /* Modal Content/Box */
 .card-content {
     background-color: #e4dede;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 12% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+
+
+    @media (max-width: 767px) {
+        height: 100%;
+        width: 100%;
+        margin: 0rem;
+    }
   }
 
   /* The Close Button */
@@ -70,8 +77,20 @@
     }
 }
 
+
 .empty-cart {
     text-align: center;
+}
+
+footer button {
+    width: 100%
+}
+
+.payment-label {
+    text-align: center;
+    background-color:white;
+    margin: 1rem;
+    width: 100%;
 }
 
 .checkout-btn {

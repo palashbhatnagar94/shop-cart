@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
@@ -12,12 +12,22 @@ export class HeaderComponent implements OnInit {
 
   showCartFlag = false;
   userLoggedIn = false;
+  showMenu = false;
   totalItem = 0;
+  windowWidth = 0;
+
+  @HostListener('window:resize', ['$event'])
+    onResize(event: { target: {
+      window: Window
+    } }) {
+      this.windowWidth = event ? event.target.window.outerWidth : 0;
+  }
 
   constructor(private cartService: CartService, public auth: AuthService,
     public route: Router) { }
 
   ngOnInit(): void {
+    this.windowWidth = window.outerWidth;
     this.cartService.showCart.subscribe(val => {
       this.showCartFlag = val;
     })
@@ -40,6 +50,11 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.auth.isLoggedIn.next(false);
+  }
+
+  menuToggle() {
+    this.showMenu = !this.showMenu;
+    console.log('this.showMenu', this.showMenu);
   }
 
 }

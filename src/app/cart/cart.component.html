@@ -25,10 +25,14 @@
                     <label> Rs. {{ product.price * (product.quantity ? product.quantity : 0) }} </label>
                 </div>
             </div>
+            <div class="item-tile">
+                <img src="../../static/images/lowest-price.png" alt="lowest price" /> 
+                <span class="lowest-price-label">You won't find it cheaper anywhere</span>
+            </div>
             <hr>
+            <div class="payment-label">Promo code can be applied on payment page</div>
             <footer>
-                <span>Amount Payable: <strong>{{ amountPayable }}</strong></span>
-                <button type="button" class="checkout-btn" [disabled]="cartData.length === 0" (click)="checkout()">Checkout</button> 
+                <button type="button"  class="btn btn-danger" [disabled]="cartData.length === 0" (click)="checkout()">Proceed to Checkout<span class="checkout-btn">{{ amountPayable }} ></span></button> 
             </footer>
         </div>
     </div>

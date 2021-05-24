@@ -1,14 +1,14 @@
 <div class="products-container row">
 
-    <div class="col-sm-12 d-md-none">
-        <select class="form-control btn-danger" [(ngModel)]="selectedCat" (ngModelChange)="onChangeCategory($event)">
+    <div class="col-xs-12 d-md-none cat-sm">
+        <select class="form-control btn-danger" [(ngModel)]="selectedCat" (ngModelChange)="onChangeCategory($event)" placeholder="Select Catefories">
             <option *ngFor="let cat of categories; let i=index" [value]="i">
                 {{ cat.name }}
                 <hr>
             </option>
           </select>
     </div>
-    <ul class="d-none d-sm-none d-md-block col-md-3 categories">
+    <ul class="d-none d-md-block col-md-3 categories">
         <li *ngFor="let cat of categories; let i=index" [ngClass]="{'active': categories[i].id === selectedCategoryId}" (click)="onChangeCategory(i)">
             {{ cat.name }}
             <hr>
@@ -17,18 +17,17 @@
 
 
     
-    <div *ngIf="products" class="col-md-9 products">
+    <div *ngIf="products" class="col-sm-12 col-md-9 products">
         <div class="row">
         <div *ngFor="let product of products; let i=index" class="card-container"
         [ngClass]="{'hide' : selectedCategoryId !== '' && selectedCategoryId !== product.category}">
-            <strong>{{ product.name }}</strong>
+            <strong class="prod-name">{{ product.name }}</strong>
             <div class="row">
-                <img [src]="product.imageURL" alt="product.description" class="col-md-6"/>
-                <p class="col-md-5 item-desc">{{ product.description | wordWrap }}</p>
+                <img [src]="product.imageURL" alt="product.description" class="col-xs-6 col-md-6"/>
+                <p class="col-xs-6 col-md-5 item-desc">{{ product.description | wordWrap }}</p>
             </div>
             <div class="price-button">
-                <label> MRP Rs. {{ product.price }} </label>
-                <button type="button" class="btn btn-danger" (click)="addToCart(product)">Buy Now</button>
+                <button type="button" class="btn btn-danger" (click)="addToCart(product)">Buy Now @ Rs. {{ product.price }}</button>
             </div>
         </div>
         </div>

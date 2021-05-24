@@ -18,6 +18,14 @@
     img {
         height: 8rem;
     }
+
+    @media (max-width: 600px) {
+        height: 20rem;
+
+        img {
+            height: 10rem;
+        }
+    }
 }
 
 .category-name {
