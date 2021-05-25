@@ -1,5 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+import { Banner } from '../model/banner.model';
+import { Category } from '../model/category.model';
+import { Product } from '../model/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +14,15 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getBanners() {
-    return this.http.get('http://localhost:5000/banners');
+  getBanners(): Observable<Banner> | Observable<any> {
+    return this.http.get(environment.host + environment.api.bannerPath);
   }
 
-  getCategories() {
-    return this.http.get('http://localhost:5000/categories');
+  getCategories(): Observable<Category> | Observable<any> {
+    return this.http.get(environment.host + environment.api.categoryPath);
   }
 
-  getProducts() {
-    return this.http.get('http://localhost:5000/products');
+  getProducts(): Observable<Product> | Observable<any> {
+    return this.http.get(environment.host + environment.api.productPath);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Product } from '../model/product.model';
 import { CartService } from '../services/cart.service';
@@ -14,10 +15,11 @@ export class CartComponent implements OnInit {
 
   amountPayable = 0.0;
 
-  constructor(public cartService: CartService) { }
+  constructor(public cartService: CartService,
+    public route: Router) { }
 
-  ngOnInit(): void {
-    this.cartService.cart.subscribe(res => {
+  ngOnInit() {
+    this.cartService.cart.subscribe((res: Product[]) => {
       this.cartData = res;
       this.amountPayable = 0.0;
       this.cartData.forEach(item => {
@@ -44,12 +46,17 @@ export class CartComponent implements OnInit {
   }
 
   close() {
-    this.cartService.showCart.next(false);
+    this.cartService.canShowCart.next(false);
+  }
+
+  startShop() {
+    this.cartService.canShowCart.next(false);
+    this.route.navigate(['/products']);
   }
 
   checkout() {
     alert('Order Success!!!');
-    this.cartService.showCart.next(false);
+    this.cartService.canShowCart.next(false);
     this.cartService.cart.next([]);
   }
 

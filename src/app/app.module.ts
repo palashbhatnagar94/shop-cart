@@ -17,6 +17,8 @@ import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
 
 import { WordWrapPipe } from './word-wrap.pipe';
+import { CategoryComponent } from './home/category/category.component';
+import { CategoryNavigationComponent } from './dashboard/category-navigation/category-navigation.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { WordWrapPipe } from './word-wrap.pipe';
     RegisterComponent,
     CartComponent,
     HeaderComponent,
-    WordWrapPipe
+    WordWrapPipe,
+    CategoryComponent,
+    CategoryNavigationComponent
   ],
   imports: [
     BrowserModule,

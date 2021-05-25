@@ -18,9 +18,9 @@
 <header class="header-container" [ngClass]="{'hide' : windowWidth > 600}"> 
         <img src="/static/images/logo.png" alt="logo image" class="logo" />             
           
-        <div class="cart cart-sm">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" (click)="menuToggle()"></button> 
-            <img src="/static/images/cart.svg" alt="cart image"  (click)="showCart()"/> {{ totalItem }} Items   
+        <div class="cart cart-sm"> 
+            <img src="/static/images/cart.svg" alt="cart image"  (click)="showCart()"/> {{ totalItem }} Items 
+            <button class="btn-sm dropdown-toggle" type="button" (click)="menuToggle()"></button>  
         </div>
 </header>
 

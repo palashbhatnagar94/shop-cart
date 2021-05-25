@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from '../model/product.model';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 
@@ -28,15 +29,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.windowWidth = window.outerWidth;
-    this.cartService.showCart.subscribe(val => {
+    
+    this.cartService.canShowCart.subscribe((val: boolean) => {
       this.showCartFlag = val;
     })
 
-    this.auth.isLoggedIn.subscribe(val => {
+    this.auth.isLoggedIn.subscribe((val: boolean) => {
       this.userLoggedIn = val;
     });
 
-    this.cartService.cart.subscribe(val => {
+    this.cartService.cart.subscribe((val: Product[]) => {
       this.totalItem = 0;
       val.forEach(item => {
         this.totalItem += (item.quantity ?? 0)
@@ -45,7 +47,7 @@ export class HeaderComponent implements OnInit {
   }
 
   showCart() {
-    this.cartService.showCart.next(!this.showCartFlag);
+    this.cartService.canShowCart.next(!this.showCartFlag);
   }
 
   logout() {

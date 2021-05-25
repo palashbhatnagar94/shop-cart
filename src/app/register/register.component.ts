@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { User } from '../model/user.model';
 
 @Component({
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register(form: any) {
+  register(form: NgForm) {
     localStorage.setItem(this.user.email, this.user.password);
     alert('Succesfully Registered')
   }

@@ -2,9 +2,31 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+@import 'assets/styles/variable.scss';
+
+// @font-face {
+//     font-family: Dosis;
+//     src: url('https://fonts.googleapis.com/css?family=Dosis:400,600,700') format('truetype');
+// }
+
+body {
+    margin: 0;
+    font-family: 'Dosis', sans-serif;
+}
 
 footer {
-    background-color: rgb(197, 194, 194);
+    background-color: $bg_grey;
     text-align: center;
     width: 100%;
+}
+
+button {
+    color: #fff;
+    background-color: $bg_pink;
+    border: $bg_pink;
+    padding: 0.375rem 0.75rem;
+    font-size: $font-md;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

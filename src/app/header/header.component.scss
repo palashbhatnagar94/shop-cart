@@ -1,45 +1,54 @@
+@import '../../assets/styles/variable.scss';
+
 .header-container {
     height: 6rem;
     margin: 1rem auto;
     display: flex;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    @media (max-width: 540px) {
+        height: 4.5rem;        
+    }
 }
 
 .logo {
     height: 5rem;
     width: auto;
+    @media (max-width: 540px) {
+        height: 4rem;        
+    }
 }
 
 .cart {
     
-    background-color: rgb(197, 194, 194);
-    padding: 0.5rem;
+    background-color: $bg_grey;
     
     img {
         height: 2rem;
-    width: auto;
-    margin: 1rem;
-    }
-
-    @media (min-width: 600px) {
-        padding: 0rem;
-        
+        width: auto;
+        margin: 1rem;
     }
 }
 
 a {
     margin: 1.5rem;
+    color: rgb(95, 88, 78);
+    font-weight: 600;
 }
 
 .cart-login, .cart-sm {
     position: absolute;
     right: 1rem;
+
+    @media (max-width: 540px) {
+        right: 0.4rem;        
+    }
 }
 
 .menu {
     list-style: none;
     display: none;    
-    background-color: rgb(214, 211, 211);
+    background-color: $bg_grey;
     line-height: 1.5;
 
     li {
@@ -49,7 +58,7 @@ a {
 
     li:hover {
         box-sizing: border-box;
-        background-color: #dc3545;
+        background-color: $bg_pink;
     }
 }
 

@@ -1,3 +1,5 @@
+@import '../../assets/styles/variable.scss';
+
 .cart-container {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -12,9 +14,9 @@
 
 /* Modal Content/Box */
 .card-content {
-    background-color: #e4dede;
+    background-color: $bg_light_grey;
     margin: 12% auto; /* 15% from the top and centered */
-    padding: 20px;
+    padding: 20px 0;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
 
@@ -24,6 +26,10 @@
         width: 100%;
         margin: 0rem;
     }
+  }
+
+  .cart-title {
+      padding: 0 20px;
   }
 
   /* The Close Button */
@@ -58,7 +64,7 @@
         justify-content: center;
 
         input {
-            width: 2rem;
+            width: 1rem;
         }
 
         button {
@@ -66,17 +72,40 @@
             border-radius: 1rem;
             vertical-align: middle;
             justify-content: center;
-            height: 2rem;
-            width: 1.5rem;
         }
     }
 
     .item-price {
         position: absolute;
         right: 10rem;
+        float: right;
     }
 }
 
+.item-lowprice-tile {
+    
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+
+    img {
+        height: 4rem;
+    }
+}
+
+.item-lowprice-tile .lowest-price-label{
+    display: inline-block;
+    margin: 0.5rem;
+}
+
+input[type=text] {
+    border: none;
+    margin: 0.5rem 0.5rem 0 1rem;
+}
 
 .empty-cart {
     text-align: center;
@@ -88,9 +117,10 @@ footer button {
 
 .payment-label {
     text-align: center;
-    background-color:white;
+    background-color: $bg_white;
     margin: 1rem;
     width: 100%;
+    font-weight: 600;
 }
 
 .checkout-btn {

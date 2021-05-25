@@ -8,7 +8,7 @@ import {  Product } from '../model/product.model';
 })
 export class CartService {
 
-  showCart = new BehaviorSubject<boolean>(false);
+  canShowCart = new BehaviorSubject<boolean>(false);
 
   cart = new BehaviorSubject<Product[]>([]);
 

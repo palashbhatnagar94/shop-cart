@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Banner } from '../model/banner.model';
+import { Category } from '../model/category.model';
 
 import { ProductService } from '../services/product.service';
 
@@ -11,9 +13,8 @@ import { ProductService } from '../services/product.service';
 })
 export class HomeComponent implements OnInit {
 
-  banners: any;
+  banners: Banner[] = [];
 
-  categories: any;
 
   constructor(public ps: ProductService,
     private config: NgbCarouselConfig) { }
@@ -21,13 +22,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.config.interval = 5000;
-    this.ps.getBanners().subscribe(res => {
+    this.ps.getBanners().subscribe((res: Banner[]) => {
       this.banners = res;
     });
 
-    this.ps.getCategories().subscribe(res => {
-      this.categories = res;
-    });
+    
   }
 
 }

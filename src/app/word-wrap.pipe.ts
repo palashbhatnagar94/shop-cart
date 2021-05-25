@@ -5,11 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class WordWrapPipe implements PipeTransform {
 
-  transform(value: string, ...args: unknown[]): unknown {
+  transform(value: string, screenWidth: number): string {
     if (value.length < 100) {
       return value
     } else {
-      return value.slice(0, 100) + '...';
+      return ( screenWidth >= 768 && screenWidth < 500) ? value.slice(0, 100) + '...' : value.slice(0, 150) + '...'
     }
 
   }

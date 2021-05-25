@@ -1,12 +1,4 @@
-@import '../../assets/styles/variable.scss';
-
-::ng-deep {
-    .carousel-indicators li {
-        height: 4px !important;
-        width: 4px !important;
-        background-color: rgb(6, 17, 114) !important;
-    }
-}
+@import '../../../assets/styles/variable.scss';
 
 .category-detail {
     height: 10rem;

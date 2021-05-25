@@ -13,20 +13,26 @@ export class AppComponent {
 
   showCart = false;
   userLoggedIn = false;
+  i = 0;
 
   constructor(private cartService: CartService, public auth: AuthService,
               public route: Router ) {}
 
   ngOnInit() {
-    this.cartService.showCart.subscribe(val => {
+    this.cartService.canShowCart .subscribe((val: boolean) => {
       if(this.userLoggedIn) {
         this.showCart = val;
       } else {
-        this.route.navigate(['/login']);
+        if(this.i===0) {
+          this.route.navigate(['/home']);
+          this.i++;
+        } else {
+          this.route.navigate(['/login']);
+        }
       }
     });
 
-    this.auth.isLoggedIn.subscribe(val => {
+    this.auth.isLoggedIn.subscribe((val: boolean) => {
       this.userLoggedIn = val;
     });
   }
