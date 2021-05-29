@@ -9,7 +9,7 @@ export class WordWrapPipe implements PipeTransform {
     if (value.length < 100) {
       return value
     } else {
-      return ( screenWidth >= 768 && screenWidth < 500) ? value.slice(0, 100) + '...' : value.slice(0, 150) + '...'
+      return value.slice(0, 100) + '...';
     }
 
   }

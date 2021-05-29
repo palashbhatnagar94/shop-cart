@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartComponent } from './cart/cart.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { 
@@ -13,19 +9,11 @@ const routes: Routes = [
   },
   { 
     path: 'products',
-    component: DashboardComponent,
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   { 
-    path: 'cart',
-    component: CartComponent,
-  },
-  { 
-    path: 'login',
-    component: LoginComponent,
-  },
-  { 
-    path: 'register',
-    component: RegisterComponent,
+    path: 'welcome',
+    loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomeModule)
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

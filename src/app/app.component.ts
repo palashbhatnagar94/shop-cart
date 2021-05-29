@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
-import { CartService } from './services/cart.service';
+import { AuthService } from './shared/services/auth.service';
+import { CartService } from './shared/services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +14,22 @@ export class AppComponent {
   showCart = false;
   userLoggedIn = false;
   i = 0;
+  
+  windowWidth = 0;
+
+  @HostListener('window:resize', ['$event'])
+    onResize(event: { target: {
+      window: Window
+    } }) {
+      this.windowWidth = event ? event.target.window.outerWidth : 0;
+  }
 
   constructor(private cartService: CartService, public auth: AuthService,
               public route: Router ) {}
 
   ngOnInit() {
-    this.cartService.canShowCart .subscribe((val: boolean) => {
+    this.windowWidth = window.outerWidth;
+    this.cartService.canShowCart.subscribe((val: boolean) => {
       if(this.userLoggedIn) {
         this.showCart = val;
       } else {
@@ -27,7 +37,7 @@ export class AppComponent {
           this.route.navigate(['/home']);
           this.i++;
         } else {
-          this.route.navigate(['/login']);
+          this.route.navigate(['/welcome']);
         }
       }
     });

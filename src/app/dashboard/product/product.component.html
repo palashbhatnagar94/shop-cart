@@ -1,0 +1,36 @@
+<div *ngIf="products">
+    <div class="row">
+        <div *ngFor="let product of products; let i=index" class="card-container"
+        [ngClass]="{'hide' : selectedCategoryId !== '' && selectedCategoryId !== product?.category}">
+            <div class="prod-name">
+                <strong>{{ product?.name }}</strong>
+            </div>
+            <div *ngIf="windowWidth < 992" class="row">
+                <img [src]="product?.imageURL" alt="product?.description" class="col-xs-6 col-md-6"/>
+                <div *ngIf="windowWidth <= 767" class="col-xs-6 col">                            
+                    <p class=" item-desc">{{ product?.description | wordWrap : windowWidth }}</p>
+                    <div class="price-button">
+                        <button type="button" name="add" (click)="addToCart(product)">Buy Now @ Rs. {{ product?.price }}</button>
+                    </div>
+                </div>
+                <ng-container *ngIf="windowWidth > 767">                            
+                    <p class="col-xs-6 col-md-5 item-desc">{{ product?.description | wordWrap : windowWidth  }}</p>
+                </ng-container>
+            </div>
+            <div *ngIf="windowWidth >= 992">
+                <img [src]="product?.imageURL" alt="product?.description"/>                           
+                <p class="item-desc">{{ product?.description | wordWrap : windowWidth }}</p>
+            </div>
+            <div *ngIf="windowWidth > 767 && windowWidth < 992" class="price-button">
+                <button type="button" name="add" (click)="addToCart(product)">Buy Now @ Rs. {{ product?.price }}</button>
+            </div>            
+            <div *ngIf="windowWidth >= 992" class="price-button">
+                <label>MRP Rs. {{ product?.price }} </label>
+                <button type="button" name="add" (click)="addToCart(product)">Buy Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="products?.length === 0">
+    No Product Available
+</ng-container>

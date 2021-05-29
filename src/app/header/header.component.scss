@@ -6,7 +6,7 @@
     display: flex;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
-    @media (max-width: 540px) {
+    @media screen and (max-width: 540px) {
         height: 4.5rem;        
     }
 }
@@ -14,7 +14,7 @@
 .logo {
     height: 5rem;
     width: auto;
-    @media (max-width: 540px) {
+    @media screen and (max-width: 540px) {
         height: 4rem;        
     }
 }
@@ -40,7 +40,7 @@ a {
     position: absolute;
     right: 1rem;
 
-    @media (max-width: 540px) {
+    @media screen and (max-width: 540px) {
         right: 0.4rem;        
     }
 }

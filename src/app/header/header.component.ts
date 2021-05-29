@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from '../model/product.model';
-import { AuthService } from '../services/auth.service';
-import { CartService } from '../services/cart.service';
+import { Product } from '../shared/model/product.model';
+import { AuthService } from '../shared/services/auth.service';
+import { CartService } from '../shared/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -30,17 +30,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.windowWidth = window.outerWidth;
     
-    this.cartService.canShowCart.subscribe((val: boolean) => {
-      this.showCartFlag = val;
+    this.cartService.canShowCart.subscribe((canShowCart: boolean) => {
+      this.showCartFlag = canShowCart;
     })
 
-    this.auth.isLoggedIn.subscribe((val: boolean) => {
-      this.userLoggedIn = val;
+    this.auth.isLoggedIn.subscribe((loggedIn: boolean) => {
+      this.userLoggedIn = loggedIn;
     });
 
-    this.cartService.cart.subscribe((val: Product[]) => {
+    this.cartService.cart.subscribe((selectedProducts: Product[]) => {
       this.totalItem = 0;
-      val.forEach(item => {
+      selectedProducts.forEach(item => {
         this.totalItem += (item.quantity ?? 0)
       });
     })
@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit {
 
   showCart() {
     this.cartService.canShowCart.next(!this.showCartFlag);
+    // this.route.navigate(['/cart']);
   }
 
   logout() {

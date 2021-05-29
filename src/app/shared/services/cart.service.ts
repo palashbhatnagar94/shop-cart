@@ -12,7 +12,7 @@ export class CartService {
 
   cart = new BehaviorSubject<Product[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   addToCart(item: Product) {
     let updatedCart = this.cart.value;
@@ -37,16 +37,21 @@ export class CartService {
   }
 
   removeItem(prod: Product) {
+    let updatedCart: Product[] = [];
     if(prod.quantity && prod.quantity > 0) {
       prod.quantity--;
     }
-
-    let updatedCart = this.cart.value.map(item => {
-      if(item.id === prod.id) {
-        item.quantity = prod.quantity
-      }
-      return item;
-    });
+    
+    if(prod?.quantity === 0){
+      updatedCart = this.cart.value.filter(item => item.id !== prod.id)
+    } else {
+      updatedCart = this.cart.value.map(item => {
+        if(item.id === prod.id) {
+          item.quantity = prod.quantity
+        }
+        return item;
+      });
+    }
 
     this.cart.next(updatedCart);
   }

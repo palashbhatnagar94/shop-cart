@@ -1,1 +1,15 @@
-<p>category-navigation works!</p>
+<div class="d-md-none cat-sm">
+    <label>Select Categories :</label>
+    <select class="form-control cat-dropdown" [(ngModel)]="selectedCat" (ngModelChange)="onChangeCategory($event)" placeholder="'Select Catefories'">
+        <option *ngFor="let cat of categories; let i=index" [value]="i">
+            {{ cat?.name }}
+            <hr>
+        </option>            
+      </select>
+</div>
+<ul class="d-none d-md-block categories">
+    <li *ngFor="let cat of categories; let i=index" [ngClass]="{'active': categories[i]?.id === selectedCategoryId}" (click)="onChangeCategory(i)">
+        {{ cat?.name }}
+        <hr>
+    </li>
+</ul>

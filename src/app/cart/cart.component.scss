@@ -2,12 +2,12 @@
 
 .cart-container {
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 99; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    overflow: visible; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
@@ -15,76 +15,61 @@
 /* Modal Content/Box */
 .card-content {
     background-color: $bg_light_grey;
-    margin: 12% auto; /* 15% from the top and centered */
-    padding: 20px 0;
-    border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    position: relative;
+    overflow: auto;
+    font-size: $font-md;
 
-
-    @media (max-width: 767px) {
+    @media screen and (max-width: $sm) {
         height: 100%;
         width: 100%;
-        margin: 0rem;
+        border: none;
+    }
+
+    @media screen and (min-width: 769px) {
+        height: 80%;
+        width: 370px;
+        border: 1px solid #888;
+        position: absolute;
+        bottom: 0;
+        right: 15%;
     }
   }
 
   .cart-title {
-      padding: 0 20px;
+    @include cartHead;
+  }
+
+  .cart-title-md {
+      @include cartHead;
+      background-color: $bg_white;
+      color: black;
+
+      h4 {
+        font-size: $font-lg;
+        font-weight: 700;
+      }
+
+      .close {
+          display: none;
+      }
   }
 
   /* The Close Button */
-.close {
-    color: #4e4c4c;
+.close-btn {
+    color: $bg_white;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 .close:hover, .close:focus {
-  color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
 .item-tile {
-    height: 8rem;
-    width: 100%;
-    display: flex;
-    background-color: white;
-    margin: 1rem 0;
-    padding: 0.5rem;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-
-    img {
-        height: 6rem;
-    }
-
-    .item-desc {
-        margin: 0 1rem;
-        justify-content: center;
-
-        input {
-            width: 1rem;
-        }
-
-        button {
-            margin: 0.5rem;
-            border-radius: 1rem;
-            vertical-align: middle;
-            justify-content: center;
-        }
-    }
-
-    .item-price {
-        position: absolute;
-        right: 10rem;
-        float: right;
-    }
-}
-
-.item-lowprice-tile {
-    
-    height: 5rem;
+    height: 6rem;
     width: 100%;
     display: flex;
     background-color: white;
@@ -94,6 +79,65 @@
 
     img {
         height: 4rem;
+    }
+
+    .item-desc {
+        margin: 0 1rem;
+
+        .prod-name {
+            font-size: $font-md;
+            font-weight: 700;
+        }
+
+        input {
+            width: 1rem;
+        }
+
+        button {
+            font-size: 16px;
+            margin: 0.5rem;
+            border-radius: 1rem;
+            vertical-align: middle;
+        }
+
+        @media screen and (max-width: $sm) {
+            margin: 0 0.5rem;
+            input {
+                width: 0.75rem;
+            }            
+            button {
+                font-size: 16px;
+                margin: 0.5rem;
+                border-radius: 1rem;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .item-price {
+        position: absolute;
+        right: 2rem;
+        margin-top: 0.75rem;
+        float: right;
+
+        @media screen and (max-width: 767px) {
+            right: 1rem;
+        }
+    }
+}
+
+.item-lowprice-tile {
+    
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+
+    img {
+        height: 2.5rem;
     }
 }
 
@@ -105,10 +149,24 @@
 input[type=text] {
     border: none;
     margin: 0.5rem 0.5rem 0 1rem;
+
+    @media screen and (max-width: $sm) {
+        margin: 0.5rem 0.25rem 0 0.5rem;
+    }
+}
+
+.product-list {
+    font-size: $font-md;
 }
 
 .empty-cart {
     text-align: center;
+    margin-top: 35%;
+}
+
+footer {
+    position: sticky;
+    bottom: 0%;
 }
 
 footer button {
@@ -118,9 +176,15 @@ footer button {
 .payment-label {
     text-align: center;
     background-color: $bg_white;
-    margin: 1rem;
+    padding: 1rem;
     width: 100%;
     font-weight: 600;
+    font-size: $font-md;
+
+    @media screen and (max-width: $sm) {
+        font-size: $font-md;
+        padding: 0.75rem;
+    }
 }
 
 .checkout-btn {

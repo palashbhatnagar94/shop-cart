@@ -1,10 +1,12 @@
 <div *ngIf="categories" class="categories-container">
     <div *ngFor="let category of categories; let i=index" class="category-detail">
-        <div class="col-md-8 category-name" [ngStyle]="{'float': i%2 === 0 ? 'right' : 'left' }">
-            <strong>{{ category.name}}</strong>
-            <p>{{ category.description }}</p>
-            <button type="button" class="explore">Explore {{ category.key }}</button>
+        <div class="category-name" [ngStyle]="{'float': i%2 === 0 ? 'right' : 'left' }">
+            <strong>{{ category?.name}}</strong>
+            <p>{{ category?.description }}</p>
+            <button type="button" name="explore" class="explore">Explore {{ category?.key }}</button>
         </div>
-        <img class="col-md-4" [src]="category.imageUrl" [alt]="category.description" [ngStyle]="{'float': i%2 === 1 ? 'right' : 'left' }"/>
+        <div class="category-img" [ngStyle]="{'float': i%2 === 1 ? 'right' : 'left' }">
+            <img [src]="category.imageUrl" [alt]="category.description" />
+        </div>
     </div>
 </div>

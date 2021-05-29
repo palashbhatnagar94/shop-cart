@@ -1,0 +1,32 @@
+@import '../../../assets/styles/variable.scss';
+
+.categories {
+    list-style: none;
+    display: inline-block;    
+    background-color: $bg_grey;
+    line-height: 1.5;
+    padding: 1rem;
+
+    li {
+        cursor: pointer;
+        margin: 0.5rem 0;
+    }
+
+    li:hover {
+        box-sizing: border-box;
+        background-color: $bg_pink;
+    }
+}
+
+.cat-dropdown {
+    background-color: $bg_pink;
+    color: $bg_white;
+}
+
+.cat-sm {
+    margin-bottom: 2rem;
+}
+
+.active {
+    background-color: $bg_light_grey;
+}

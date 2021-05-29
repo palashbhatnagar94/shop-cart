@@ -1,0 +1,114 @@
+@import '../../../assets/styles/variable.scss';
+
+.card-container {
+    height: 15rem;
+    width: 15rem;
+    margin: 4px;
+    padding: 4px;
+    box-sizing: border-box;
+    border-bottom: 1px dashed $bg_grey;
+    background-color: $bg_white;
+
+    img {
+        height: 7rem;
+        width: auto;
+    }
+
+    
+    @media screen and (max-width: $sm) {
+        
+        height: 12rem;
+        width: 100%;
+        margin: 4px;
+        padding: 4px;
+    
+        img {
+            height: 8rem;
+            width: 40%;
+        }
+    }
+
+    @media screen and (min-width: $sm) and (max-width: $md) {
+        
+        height: 16rem;
+        width: 40%;
+        margin: 4px;
+        padding: 4px;
+
+        img {
+            height: 8rem;
+            width: auto;
+        }
+    }
+
+    @media screen and (min-width: $md) {
+        height: 25rem;
+        width: 12rem;
+
+        img {
+            height: 10rem;
+            width: auto;
+            margin-left: 0.5rem 0.5rem;
+        }
+    }
+}
+
+.prod-name {
+    margin-bottom: 1rem;
+    height: 2rem
+}
+
+.item-desc {    
+    font-size: $font-sm;
+    font-weight: 600;
+    margin: 2px 0 2px 0;
+    background-color:  $bg_grey;
+    width: 50%;
+    padding: 0.75rem;
+
+    @media screen and (max-width:$sm) {
+        width: 100%;
+    }
+
+    @media screen and (min-width: $md) {
+        width: auto;
+        font-size: $font-md;
+        height: 6rem
+    }
+}
+
+.price-button {
+    text-align: center;
+
+    button {
+        width: 100%;
+        margin: 0.5rem auto;
+    }
+
+            
+
+    @media screen and (max-width: $xs) {
+        button{font-size: $font-md};
+    }
+
+    @media screen and (min-width: $md) {
+
+        margin-top:  1rem;;
+        button{
+            width: auto;
+            margin-left: 2rem;
+        }
+
+        label {
+            font-weight: 600;
+        }
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}

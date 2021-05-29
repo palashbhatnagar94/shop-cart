@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Product } from '../model/product.model';
-import { CartService } from '../services/cart.service';
+import { Product } from '../shared/model/product.model';
+import { CartService } from '../shared/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,14 +15,30 @@ export class CartComponent implements OnInit {
 
   amountPayable = 0.0;
 
+  totalItem = 0;
+
+  windowWidth = 0;
+  
+  @HostListener('window:resize', ['$event'])
+    onResize(event: { target: {
+      window: Window
+    } }) {
+      this.windowWidth = event ? event.target.window.outerWidth : 0;
+  }
+
   constructor(public cartService: CartService,
     public route: Router) { }
 
   ngOnInit() {
+
+    this.windowWidth = window.outerWidth;
+
     this.cartService.cart.subscribe((res: Product[]) => {
       this.cartData = res;
       this.amountPayable = 0.0;
+      this.totalItem = 0;
       this.cartData.forEach(item => {
+        this.totalItem += (item.quantity ?? 0);
         this.amountPayable += (item.price * (item.quantity ?? 0));
       })
     })

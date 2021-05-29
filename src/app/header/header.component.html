@@ -4,8 +4,8 @@
         <a routerLink="/products">Products</a>
         <div class="cart-login">
             <div *ngIf="!userLoggedIn">
-                <a routerLink="/login">SignIn</a>
-                <a routerLink="/register">Register</a>
+                <a routerLink="/welcome">SignIn</a>
+                <a routerLink="/welcome/register">Register</a>
             </div>
             <div *ngIf="userLoggedIn">
                 <a href="#" (click)="logout()">Log Out</a>
@@ -20,14 +20,14 @@
           
         <div class="cart cart-sm"> 
             <img src="/static/images/cart.svg" alt="cart image"  (click)="showCart()"/> {{ totalItem }} Items 
-            <button class="btn-sm dropdown-toggle" type="button" (click)="menuToggle()"></button>  
+            <button class="btn-sm dropdown-toggle" type="button" name="menu-toggle" (click)="menuToggle()"></button>  
         </div>
 </header>
 
 <ul class="menu" [ngClass]="{'show': showMenu}" (click)="menuToggle()">
     <li><a routerLink="/home">Home</a></li>
     <li><a routerLink="/products">Products</a></li>
-    <li *ngIf="!userLoggedIn"><a routerLink="/login">SignIn</a></li>
-    <li *ngIf="!userLoggedIn"><a routerLink="/register">Register</a></li>
+    <li *ngIf="!userLoggedIn"><a routerLink="/welcome">SignIn</a></li>
+    <li *ngIf="!userLoggedIn"><a routerLink="/welcome/register">Register</a></li>
     <li *ngIf="userLoggedIn"><a routerLink="/home" (click)="logout()">Log Out</a></li>
 </ul>

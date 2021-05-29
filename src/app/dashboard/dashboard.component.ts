@@ -1,8 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Category } from '../model/category.model';
-import { Product } from '../model/product.model';
-import { CartService } from '../services/cart.service';
-import { ProductService } from '../services/product.service';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../shared/services/cart.service';
+import { ProductService } from '../shared/services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,52 +10,14 @@ import { ProductService } from '../services/product.service';
 })
 export class DashboardComponent implements OnInit {
 
-  products: any;
+  categoryId: string = '';
 
-  categories: any;
+  constructor(public ps: ProductService, public cartService: CartService,
+    private route: ActivatedRoute) { }
 
-  selectedCategoryId: string = '';
-
-  selectedCat: string = '';
-
-  cartData:Product[] = [];
-
-  windowWidth = 0;
-
-  @HostListener('window:resize', ['$event'])
-    onResize(event: { target: {
-      window: Window
-    } }) {
-      this.windowWidth = event ? event.target.window.outerWidth : 0;
-  }
-
-  constructor(public ps: ProductService, public cartService: CartService) { }
-
-  ngOnInit(): void {
-
-    this.windowWidth = window.outerWidth;
-
-    this.ps.getProducts().subscribe((res: Product[]) => {
-      this.products = res;
-    });
-
-    this.ps.getCategories().subscribe((res: Category[]) => {
-      this.categories = res;
-    });
-
-    this.cartService.cart.subscribe((res: Product[]) => {
-      this.cartData = res;
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.categoryId = params.get('id') ?? '';
     })
-  }
-
-  addToCart(prod: Product) {
-    this.cartService.addToCart(prod).subscribe(res => {
-      alert(res.responseMessage);
-    });
-  }
-
-  onChangeCategory(i: number) {
-    console.log('category', this.categories[i]);
-    this.selectedCategoryId = this.categories[i]?.id;
   }
 }

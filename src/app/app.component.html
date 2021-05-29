@@ -1,6 +1,9 @@
 <app-header></app-header>
 <div class="container">
-    <router-outlet></router-outlet>
+    <ng-container *ngIf="!showCart || (showCart && windowWidth > 769)">        
+        <router-outlet></router-outlet>
+    </ng-container>
     <app-cart *ngIf="showCart && userLoggedIn"></app-cart>
+    <!-- <app-cart *ngIf="showCart"></app-cart> -->
 </div>
 <footer>Copyright &#169; Sabka Bazzar Grocery Supplies Pvt. Ltd.</footer>

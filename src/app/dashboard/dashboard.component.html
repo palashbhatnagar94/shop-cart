@@ -1,62 +1,10 @@
 <div class="products-container row">
-
-    <div class="col-xs-12 d-md-none cat-sm">
-        <label>Select Categories :</label>
-        <select class="form-control cat-dropdown" [(ngModel)]="selectedCat" (ngModelChange)="onChangeCategory($event)" placeholder="'Select Catefories'">
-            <option *ngFor="let cat of categories; let i=index" [value]="i">
-                {{ cat?.name }}
-                <hr>
-            </option>            
-          </select>
+    <div class="col-xs-12 col-md-3 navigation">
+        <app-category-navigation [selectedCategoryId]="categoryId"></app-category-navigation>
     </div>
-    <ul class="d-none d-md-block col-md-3 col-l-2 categories">
-        <li *ngFor="let cat of categories; let i=index" [ngClass]="{'active': categories[i]?.id === selectedCategoryId}" (click)="onChangeCategory(i)">
-            {{ cat?.name }}
-            <hr>
-        </li>
-    </ul>
-
-
-    
-    <div *ngIf="products" class="col-sm-12 col-md-9 col-l-10 products">
-        <div class="row">
-            <div *ngFor="let product of products; let i=index" class="card-container"
-            [ngClass]="{'hide' : selectedCategoryId !== '' && selectedCategoryId !== product?.category}">
-                <strong class="prod-name">{{ product?.name }}</strong>
-                <div *ngIf="windowWidth < 1024" class="row">
-                    <img [src]="product?.imageURL" alt="product?.description" class="col-xs-6 col-md-6"/>
-                    <div *ngIf="windowWidth < 500" class="col-xs-6 col-md-5 col">                            
-                        <p class=" item-desc">{{ product?.description | wordWrap : windowWidth }}</p>
-                        <div class="price-button">
-                            <button type="button" (click)="addToCart(product)">Buy Now @ Rs. {{ product?.price }}</button>
-                        </div>
-                    </div>
-                    <ng-container *ngIf="windowWidth > 500">                            
-                        <p class="col-xs-6 col-md-5 item-desc">{{ product?.description | wordWrap : windowWidth  }}</p>
-                        <!-- <div class="price-button">
-                            <button type="button" (click)="addToCart(product)">Buy Now @ Rs. {{ product?.price }}</button>
-                        </div> -->
-                    </ng-container>
-                </div>
-                <div *ngIf="windowWidth >= 1024">
-                    <img [src]="product?.imageURL" alt="product?.description"/>                           
-                    <p class="item-desc">{{ product?.description | wordWrap : windowWidth }}</p>
-                        <!-- <div class="price-button">
-                            <button type="button" (click)="addToCart(product)">Buy Now @ Rs. {{ product?.price }}</button>
-                        </div> -->
-                </div>
-                <div *ngIf="windowWidth > 500 && windowWidth < 1024" class="price-button">
-                    <button type="button" (click)="addToCart(product)">Buy Now @ Rs. {{ product?.price }}</button>
-                </div>
-                
-                <div *ngIf="windowWidth >= 1024" class="price-button">
-                    <label>MRP Rs. {{ product?.price }} </label>
-                    <button type="button" (click)="addToCart(product)">Buy Now</button>
-                </div>
-            </div>
-        </div>
+    <div class="col-xs-12 col-md-9 products">
+        <app-product [selectedCategoryId]="categoryId"></app-product>
     </div>
-    <ng-container *ngIf="products?.length === 0">
-        No Product Available
-    </ng-container>
+
+
 </div>
